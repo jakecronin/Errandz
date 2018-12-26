@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import theme from '../theme.js';
+import AddressSearch from './AddressSearch'
 
 const HomeComponent = ({
     onRoutePressed,
@@ -10,7 +11,6 @@ const HomeComponent = ({
 
   return (
     <View style={styles.container}>
-
       <View style={styles.addressBox}>
         <Text>476 english ivy court</Text>
       </View>

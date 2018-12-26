@@ -5,11 +5,11 @@ export const types = {
 };
 
 export const initialState = () => {
-  return;
+  return {test: null};
 };
 
 export default (state = initialState(), actions) => {
-
+  return state;
 };
 
 export const actions = {
