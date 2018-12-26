@@ -5,7 +5,7 @@ export const types = {
 };
 
 export const initialState = () => {
-  return {null}
+  return;
 };
 
 export default (state = initialState(), actions) => {
@@ -14,4 +14,4 @@ export default (state = initialState(), actions) => {
 
 export const actions = {
 
-}
+};

@@ -1,27 +1,31 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Provider } from 'react-redux'; //wropper to use redux with react
+import ReduxThunk from 'redux-thunk'; //for async dispach operations
+import { createStore, applyMiddleware } from 'redux'; //for using redux
+
+import duck from './duck';
+
+
 import HomeContainer from './containers/HomeContainer';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const store = createStore(duck, {}, applyMiddleware(ReduxThunk));
 
 type Props = {};
 export default class App extends Component<Props> {
+  componentWillMount() {
+    console.disableYellowBox = true;
+    if (Platform.OS !== 'ios') {
+      UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+  }
+
   render() {
     return (
-      <HomeContainer />
+      <Provider store={store}>
+        <HomeContainer />
+      </Provider>
     );
   }
 }
