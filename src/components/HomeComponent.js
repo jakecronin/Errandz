@@ -1,19 +1,30 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, TouchableHighlight, TouchableOpacity } from 'react-native';
+import _ from 'lodash';
 import theme from '../theme.js';
-import AddressSearch from './AddressSearch'
+import AddressRow from './AddressRow';
+import SortableListView from 'react-native-sortable-listview';
 
 const HomeComponent = ({
     onRoutePressed,
     destinations, //array of destinatsion: [dest1, dest2, dest3]
 }) => {
-
+  const renderLocations = () => {
+    var rows = [];
+    _.forEach(destinations, (destination, index) => {
+      rows.push(<AddressRow destination={destination} index={index} count={destinations.length}
+      key={index}
+      />);
+    });
+    return (<View>{rows}</View>);
+  };
 
   return (
     <View style={styles.container}>
-      <View style={styles.addressBox}>
-        <Text>476 english ivy court</Text>
-      </View>
+      {renderLocations()}
+      <TouchableOpacity>
+        <Text>Optimize</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -21,19 +32,32 @@ const HomeComponent = ({
 const styles = {
   container: {
     width: '100%',
-    height: '100%',
+    flex: 1,
     paddingTop: 40,
     paddingHorizontal: 20,
     alignItems: "center",
-    backgroundColor: 'gray',
-    borderBottomWidth: 5,
-
+  },
+  row: {
+    flexDirection: 'row',
+    width: '100%',
+  },
+  leftText: {
+    flex: 0.2,
+    fontSize: theme.FONT_SIZE_MEDIUM,
+  },
+  locText: {
+    flex: 1,
+    fontSize: theme.FONT_SIZE_MEDIUM,
+  },
+  locationRow: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    padding: 4,
   },
   addressBox: {
       backgroundColor: theme.COLOR_PRIMARY,
       justifyContent: 'flex-start',
       flexDirection: 'column',
-      borderColor: '#ddd',
       height: 30,
       width: '100%'
   }

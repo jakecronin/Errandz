@@ -10,7 +10,7 @@ import duck from './duck';
 
 import HomeContainer from './containers/HomeContainer';
 
-const store = createStore(duck, {}, applyMiddleware(ReduxThunk));
+const store = createStore(duck, applyMiddleware(ReduxThunk));
 
 type Props = {};
 export default class App extends Component<Props> {

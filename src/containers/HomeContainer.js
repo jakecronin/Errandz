@@ -7,17 +7,24 @@ import HomeComponent from '../components/HomeComponent';
 
 class HomeContainer extends React.Component {
 
+  onDestinationX(destination){
+
+  }
   render() {
+    const { destinations } = this.props;
     return (
-      <HomeComponent />
+      <HomeComponent
+        destinations={destinations}
+        onDestinationX={this.onDestinationX.bind(this)}
+      />
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log('state: ', state);
+  console.log('home container state: ', state);
   const { destinations } = state;
-  return {};
+  return { destinations };
 }
 
 export default connect(mapStateToProps, actions)(HomeContainer);
